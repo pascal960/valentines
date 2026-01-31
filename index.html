@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Valentine 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Romantic font -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Play music button -->
+    <button id="playMusic">Play Music 💖</button>
+
+    <!-- Hidden audio -->
+    <audio id="romanticSong" loop>
+        <source src="romantic music/at my worst.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Overlay text -->
+    <div class="overlay">
+        <h1>Lonah Gakenia,<br>will you be my Valentine? 💐</h1>
+    </div>
+
+    <!-- Container for magical floating elements -->
+    <div class="magic-container"></div>
+
+    <!-- JS -->
+    <script>
+        // Play music
+        const song = document.getElementById('romanticSong');
+        const button = document.getElementById('playMusic');
+        button.addEventListener('click', () => {
+            song.play();
+            button.style.display = 'none';
+        });
+
+        // Magical falling elements
+        const container = document.querySelector('.magic-container');
+        const elements = ['🌸','💖','✨','🌺','💌','🌟'];
+
+        function createMagic() {
+            const magic = document.createElement('span');
+            magic.classList.add('magic');
+            magic.textContent = elements[Math.floor(Math.random()*elements.length)];
+
+            // Random horizontal start
+            magic.style.left = Math.random() * 100 + 'vw';
+            // Random size
+            magic.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            // Random speed
+            magic.style.animationDuration = (Math.random() * 8 + 5) + 's';
+            // Random opacity
+            magic.style.opacity = Math.random() * 0.8 + 0.5;
+
+            // Random starting top above screen
+            magic.style.top = -50 - Math.random() * 200 + 'px';
+            // Random rotation
+            magic.style.transform = `rotate(${Math.random()*360}deg)`;
+
+            container.appendChild(magic);
+
+            // Remove after animation ends
+            magic.addEventListener('animationend', () => magic.remove());
+        }
+
+        // Continuously create magical elements
+        setInterval(createMagic, 200);
+    </script>
+
+</body>
+</html>
